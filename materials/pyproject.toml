@@ -1,0 +1,47 @@
+[tool.mypy]
+plugins = ["sqlalchemy.ext.mypy.plugin", "pydantic.mypy"]
+
+[[tool.mypy.overrides]]
+module = "motor.*"
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module = "broadcaster.*"
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module = "sklearn.*"
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module = "joblib.*"
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module = "transformers.*"
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module = "diffusers.*"
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module = "minio.*"
+ignore_missing_imports = true
+
+[tool.ruff]
+extend-select = ["I"]
+ignore = ["E501", "E741"]
+
+[tool.ruff.isort]
+known-first-party = ["project"]
+
+[tool.pytest.ini_options]
+addopts = "--cov --cov-report=term-missing --cov-config=pyproject.toml"
+asyncio_mode = "strict"
+markers = ["fastapi"]
+
+[tool.coverage.run]
+omit = [
+  "tests/*",
+]
